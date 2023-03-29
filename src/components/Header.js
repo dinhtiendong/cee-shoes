@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  BrowserRouter, Routes, Route, Link
+  BrowserRouter, Routes, Route, Link, useNavigate
 } from "react-router-dom";
 import {
   FaSearch, FaUser, FaHeart, FaShoppingCart, FaBars, FaTimes,
@@ -10,6 +10,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 export default function Header() {
   const productList = useSelector((state) => state.product.productList);
+
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -41,7 +43,9 @@ export default function Header() {
             <Link to='/cart'>
               <FaShoppingCart className='text-2xl mr-10 text-gray-300' />
             </Link>
+            <Link to='/login'>
             <FiLogOut className='text-2xl mr-10 text-gray-300' />
+            </Link>
           </div>
         </div>
       </div>

@@ -26,7 +26,7 @@ function App() {
         {categories.map((e, i) => (
           <div className='border flex-1 justify-center items-center relative'
             style={i === 1 ? { marginLeft: 20, marginRight: 20 } : {}}
-          >
+          > 
             <div className="gradient-category"></div>
             <img src={e.img} alt={e.title} className='h-full w-full object-cover' />
             <Link to='/product'>

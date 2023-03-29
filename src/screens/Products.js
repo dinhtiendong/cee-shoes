@@ -46,6 +46,10 @@ function App() {
     dispatch(addProduct({ ...product, quantity: 1, size: product.size?.[0] }));
   };
 
+  const onAddHeart = (product) => () => {
+    dispatch(addProduct({ ...product, quantity: 1, size: product.size?.[0] }));
+  };
+
   return (
     <div>
       {/* header */}
@@ -199,7 +203,7 @@ function App() {
                   <div className="relative">
                     {/* <img src={require(`../assets/images/${e.image}`)} alt={e.title} className='object-cover h-48 w-full' /> */}
                     <img src={getImagePath(e.image)} alt={e.title} className='object-cover h-48 w-full' />
-                    <div className="wrap-heart">
+                    <div onClick={onAddHeart(e)} className="wrap-heart">
                       <Heart />
                     </div>
                   </div>

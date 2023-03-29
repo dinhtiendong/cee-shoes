@@ -7,6 +7,7 @@ import Product from './screens/Products';
 import Detail from './screens/Detail';
 import Cart from './screens/Cart';
 import Wishlist from './screens/Wishlist';
+import Login from './screens/Login';
 
 export default function Routers() {
   return (
@@ -18,8 +19,8 @@ export default function Routers() {
 
         <Route path="/cart" element={<Cart />} />
         <Route path="/wishlist" element={<Wishlist />} />
-        {/* <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<Register />} />
+         <Route path="/login" element={<Login/>} />
+     {/* <Route path="/register" element={<Register />} />
       <Route path='*' element={<NotFound />} /> */}
       </Routes>
     </BrowserRouter>

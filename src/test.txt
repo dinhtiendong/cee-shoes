@@ -1,0 +1,64 @@
+define
+ $keyword="biệt thự hà nội"
+ $link = "mogi.vn"
+ $numConfigScroll = 30
+endDefine
+sequence
+ openapp -p 'com.android.chrome'
+ wait -xpath '//*[@content-desc="Home"]' -timeout 7000 -thenclick true
+ random -text "7 tỷ 550 triệu,7 tỷ 600 triệu,55 tỷ,7 tỷ 950 triệu,22 tỷ,10 tỷ 500 triệu,13 tỷ,48 tỷ,28 tỷ,20 tỷ 500 triệu,116 tỷ,9 tỷ 500 triệ" -var "tukhoa"
+ wait -xpath '//*[@resource-id="com.android.chrome:id/search_box_text"]' -timeout 20000 -theninput 'getVar -var keyword'
+ sleep -t 1000
+ replace -text '//*[@text="keysearch"][@resource-id="com.android.chrome:id/line_1"]' -replace 'keysearch' -to 'getVar -var keyword' -var 'xpath_click'
+ wait -xpath 'getVar -var xpath_click' -timeout 2000 -thenclick true
+ sleep -t 1000
+ var -name find_in_screen -value 0
+ loop -i 'getVar -var numConfigScroll'
+  var -name check_link -value 0
+  wait -text 'getVar -var link' -exactly true -timeout 20000 -varPosX "bienX" -varPosY "bienY" -then {var -name check_link -value 1}
+  loop -i 1
+   if -getVar check_link -equal 0 -then break -else {toast -text 'da tim thay'}
+   sleep -t 1000
+   toast -text 'getVar -var bienY'
+   sleep -t 1000
+   replace -text "temp <1980" -replace "temp" -to "getVar -name bienY" -var calTemp
+   calc -math "getVar -name calTemp" -var calResult
+   if -getVar "calResult" -equal true -then {var -name find_in_screen -value 1} -else break
+   sleep -t 2000   
+   click -x 'getVar -name bienX' -y 'getVar -name bienY'
+   toast -text 'click vao trang'
+   sleep -t 1000
+   toast -text 'getVar -var "tukhoa"'
+   sleep -t 1000
+   loop -i 10
+    swipe -startX 300 -startY 1500 -endX 300 -endY 300 -time 500
+    sleep -t 1000
+    wait -text 'getVar -var "tukhoa"' -thenclick true -varPosX "bienX" -varPosY "bienY"
+    toast -text 'getVar -var bienX'
+    sleep -t 1000
+    toast -text 'getVar -var bienY'
+    sleep -t 1000
+   endloop
+  endloop
+  if -getVar find_in_screen -equal 1 -then break
+  swipe -startX 300 -startY 1500 -endX 300 -endY 300 -time 500
+  sleep -t 1000
+ endloop
+ toast -text 'done'
+ sleep -t 1000
+ //close app
+ recent
+ sleep -t 500
+ swipe -orient down -t 1000
+ sleep -t 500
+ $scrollRight
+ sleep -t 500
+ swipe -orient down -t 1000
+ sleep -t 500
+ $scrollRight
+ wait -text "clear all" -exactly true  -timeout 5000 -thenclick true
+ recent
+ sleep -t 2000
+ wait -text "close all" -exactly true  -timeout 5000 -thenclick true
+ //end of close app
+endSequence

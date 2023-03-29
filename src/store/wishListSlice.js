@@ -8,7 +8,7 @@ export const productSlice = createSlice({
   name: "product",
   initialState,
   reducers: {
-    addProduct: (state, action) => {
+    onAddHeart: (state, action) => {
       console.log("action", action.payload);
       //cach 1
       // const isExisted = state.productList.find(product => product.id === action.payload?.id);
